@@ -10,7 +10,6 @@ setup(name='pickled_dict',  # How you named your package folder (MyLib)
       url='https://github.com/Daveismus/pickled_dict',  
       download_url='https://github.com/Daveismus/pickled_dict/archive/0.1.tar.gz',
       keywords=['pickle', 'dict', 'peristant'],  # Keywords that define your package best
-      install_requires=[, ],
       classifiers=['Development Status :: 3 - Alpha',
                    # Chose either "3 - Alpha", "4 - Beta" or "5 - Production/Stable" as the current state of your package
                    'Intended Audience :: Science',  # Define that your audience are developers
