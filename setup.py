@@ -7,14 +7,12 @@ setup(name='pickled_dict',  # How you named your package folder (MyLib)
       description='TYPE YOUR DESCRIPTION HERE',  # Give a short description about your library
       author='David Brielbeck',  # Type in your name
       author_email='dbrielbeck@gmail.com',  # Type in your E-Mail
-      url='https://github.com/Daveismus/ndarray_to_db',  # Provide either the link to your github or to your website
-      download_url='https://github.com/user/reponame/archive/v_01.tar.gz',  # I explain this later on
-      keywords=['Database', 'Numpy', 'ndarray'],  # Keywords that define your package best
-      install_requires=[
-          'numpy', ],
+      url='https://github.com/Daveismus/pickled_dict',  # Provide either the link to your github or to your website
+      download_url='https://github.com/Daveismus/pickled_dict/archive/v_01.tar.gz',  # I explain this later on
+      keywords=['pickle', 'dict', 'persistance'],  # Keywords that define your package best
       classifiers=['Development Status :: 3 - Alpha',
                    # Chose either "3 - Alpha", "4 - Beta" or "5 - Production/Stable" as the current state of your package
-                   'Intended Audience :: Science',  # Define that your audience are developers
+                   'Intended Audience :: Developers',  # Define that your audience are developers
                    'Topic :: Software Development :: Build Tools',
                    'License :: OSI Approved :: MIT License',  # Again, pick a license
                    'Programming Language :: Python :: 3',
