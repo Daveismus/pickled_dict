@@ -4,14 +4,13 @@ setup(name='pickled_dict',  # How you named your package folder (MyLib)
       packages=['pickled_dict'],  # Chose the same as "name"
       version='0.1',  # Start with a small number and increase it with every change you make
       license='MIT',  # Chose a license from here: https://help.github.com/articles/licensing-a-repository
-      description='TYPE YOUR DESCRIPTION HERE',  # Give a short description about your library
+      description='Have a persistant Dictionary saved as file',  # Give a short description about your library
       author='David Brielbeck',  # Type in your name
       author_email='dbrielbeck@gmail.com',  # Type in your E-Mail
-      url='https://github.com/Daveismus/ndarray_to_db',  # Provide either the link to your github or to your website
-      download_url='https://github.com/user/reponame/archive/v_01.tar.gz',  # I explain this later on
-      keywords=['Database', 'Numpy', 'ndarray'],  # Keywords that define your package best
-      install_requires=[
-          'numpy', ],
+      url='https://github.com/Daveismus/pickled_dict',  
+      download_url='https://github.com/Daveismus/pickled_dict/archive/0.1.tar.gz',
+      keywords=['pickle', 'dict', 'peristant'],  # Keywords that define your package best
+      install_requires=[, ],
       classifiers=['Development Status :: 3 - Alpha',
                    # Chose either "3 - Alpha", "4 - Beta" or "5 - Production/Stable" as the current state of your package
                    'Intended Audience :: Science',  # Define that your audience are developers
