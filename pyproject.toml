@@ -19,4 +19,4 @@ requires = ["poetry>=0.12"]
 build-backend = "poetry.masonry.api"
 
 [tool.semantic_release] 
-version = "0.1.6"
+version = "pickled_dict/__init__.py:__version_"
