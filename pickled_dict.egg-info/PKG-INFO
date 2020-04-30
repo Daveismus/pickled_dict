@@ -1,0 +1,11 @@
+Metadata-Version: 1.2
+Name: pickled-dict
+Version: 0.1.6
+Summary: A persistant Dictionary saved as file
+Home-page: https://github.com/Daveismus/pickled_dict
+Author: David
+Author-email: dbrielbeck@gmail.com
+License: UNKNOWN
+Description: UNKNOWN
+Platform: UNKNOWN
+Requires-Python: >=3.6,<4.0

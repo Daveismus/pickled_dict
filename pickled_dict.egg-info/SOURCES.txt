@@ -1,0 +1,8 @@
+README.md
+setup.py
+pickled_dict/PickledDict.py
+pickled_dict/__init__.py
+pickled_dict.egg-info/PKG-INFO
+pickled_dict.egg-info/SOURCES.txt
+pickled_dict.egg-info/dependency_links.txt
+pickled_dict.egg-info/top_level.txt
