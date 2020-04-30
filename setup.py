@@ -8,8 +8,7 @@ setup(name='pickled_dict',  # How you named your package folder (MyLib)
       description='Have a persistant Dictionary saved as file',  # Give a short description about your library
       author='David Brielbeck',  # Type in your name
       author_email='dbrielbeck@gmail.com',  # Type in your E-Mail
-      url='https://github.com/Daveismus/pickled_dict',  
-      download_url='https://github.com/Daveismus/pickled_dict/archive/0.1.tar.gz',
+      url='https://github.com/Daveismus/pickled_dict',
       keywords=['pickle', 'dict', 'peristant'],  # Keywords that define your package best
       classifiers=['Development Status :: 3 - Alpha',
                    # Chose either "3 - Alpha", "4 - Beta" or "5 - Production/Stable" as the current state of your package
