@@ -1,4 +1,5 @@
 from distutils.core import setup
+import setuptools
 from pickled_dict.__init__ import __version__
 
 setup(name='pickled_dict',  # How you named your package folder (MyLib)
