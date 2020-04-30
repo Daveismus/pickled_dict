@@ -22,13 +22,10 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install poetry
-        poetry install
+        pip install python-semantic-release
+        poetry install        
 
-    - uses: actions/setup-setup-dotnet@v1
-    - uses: actions/setup-gitversion@v1.0.0
-      with:
-        gitversion-version: 5.1.1
-    - run: GitVersion
+  
 
     #- name: Update poetry Buildnumber
     #  run: poetry version ${{ steps.buildnumber.outputs.build_number }}
