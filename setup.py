@@ -10,6 +10,7 @@ setup(name='pickled_dict',  # How you named your package folder (MyLib)
       author_email='dbrielbeck@gmail.com',  # Type in your E-Mail
       url='https://github.com/Daveismus/pickled_dict',
       keywords=['pickle', 'dict', 'peristant'],  # Keywords that define your package best
+      setup_requires=['wheel'],
       classifiers=['Development Status :: 3 - Alpha',
                    # Chose either "3 - Alpha", "4 - Beta" or "5 - Production/Stable" as the current state of your package
                    'Intended Audience :: Science/Research',  # Define that your audience are developers
