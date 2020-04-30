@@ -22,19 +22,13 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install poetry
-        poetry install
+        pip install python-semantic-release
+        poetry install        
 
-    - name: Update Version Number
-      id: buildnumber
-      uses: einaregilsson/build-number@v2 
-      with:
-        token: ${{secrets.VERSION}} 
+  
 
-    - name: Print new build number
-      run: echo "Build number is $BUILD_NUMBER"
-
-    - name: Update poetry Buildnumber
-      run: poetry version ${{ steps.buildnumber.outputs.build_number }}
+    #- name: Update poetry Buildnumber
+    #  run: poetry version ${{ steps.buildnumber.outputs.build_number }}
       
     - name: Build and publish to pypi
       uses: JRubics/poetry-publish@v1
