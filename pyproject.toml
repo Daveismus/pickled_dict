@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pickled_dict"
-version = "0.1.6"
+version = "0.1.5"
 license = "MIT"
 description = "A persistant Dictionary saved as file"
 authors = ["David <dbrielbeck@gmail.com>"]
