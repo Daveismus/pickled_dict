@@ -20,3 +20,4 @@ build-backend = "poetry.masonry.api"
 
 [tool.semantic_release] 
 version_variable = "pickled_dict/__init__.py:__version__"
+upload_to_pypi = "false"
