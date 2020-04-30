@@ -36,7 +36,7 @@ jobs:
     - name: Update poetry Buildnumber
       run: poetry version ${{ steps.buildnumber.outputs.build_number }}
       
-      - name: Build and publish to pypi
-        uses: JRubics/poetry-publish@v1
-        with:
-          pypi_token: ${{ secrets.PYPI_TOKEN }}
+    - name: Build and publish to pypi
+      uses: JRubics/poetry-publish@v1
+      with:
+        pypi_token: ${{ secrets.PYPI_TOKEN }}
