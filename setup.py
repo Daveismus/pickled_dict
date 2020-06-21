@@ -1,15 +1,17 @@
 from distutils.core import setup
+import setuptools
+from pickled_dict.__init__ import __version__
 
 setup(name='pickled_dict',  # How you named your package folder (MyLib)
       packages=['pickled_dict'],  # Chose the same as "name"
-      version='0.1.5',  # Start with a small number and increase it with every change you make
+      version=__version__,  # Start with a small number and increase it with every change you make
       license='MIT',  # Chose a license from here: https://help.github.com/articles/licensing-a-repository
       description='Have a persistant Dictionary saved as file',  # Give a short description about your library
       author='David Brielbeck',  # Type in your name
       author_email='dbrielbeck@gmail.com',  # Type in your E-Mail
-      url='https://github.com/Daveismus/pickled_dict',  
-      download_url='https://github.com/Daveismus/pickled_dict/archive/0.1.tar.gz',
+      url='https://github.com/Daveismus/pickled_dict',
       keywords=['pickle', 'dict', 'peristant'],  # Keywords that define your package best
+      setup_requires=['wheel'],
       classifiers=['Development Status :: 3 - Alpha',
                    # Chose either "3 - Alpha", "4 - Beta" or "5 - Production/Stable" as the current state of your package
                    'Intended Audience :: Science/Research',  # Define that your audience are developers

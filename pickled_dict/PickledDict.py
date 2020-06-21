@@ -22,16 +22,17 @@ class PickledDict(dict):
     def __init__(self, filename: PathLike, mode: str = 'c', *args, **kwargs):
         self.filename = filename
         self.mode = mode  # can be c, r, n
-        if mode != 'n' and os.access(filename, os.R_OK):
-            with open(filename, 'rb') as fileobj:
-                self.load(fileobj)
-            dict.__init__(self, *args, **kwargs)
+        self.reload()
+        dict.__init__(self, *args, **kwargs)
 
     def __enter__(self):
         return self
 
     def __exit__(self, *exc_info):
         self.close()
+
+    def __len__(self):
+        return len(self.keys())
 
     def sync(self):
         """
@@ -68,9 +69,18 @@ class PickledDict(dict):
         except ValueError:
             raise ValueError('File format not supported')
 
-    def dump(self, fileobj: PathLike):
+    def dump(self, fileobj: PathLike) -> None:
         """
         writes data to the disk. It only supports pickled data.
         :return:
         """
         pickle.dump(dict(self), fileobj, protocol=pickle.HIGHEST_PROTOCOL)
+
+    def reload(self) -> None:
+        """
+        Update your variable, that saved the Data and needs to be updated to have the new Values saved
+        :return: 
+        """
+        if self.mode != 'n' and os.access(self.filename, os.R_OK):
+            with open(self.filename, 'rb') as fileobj:
+                self.load(fileobj)
