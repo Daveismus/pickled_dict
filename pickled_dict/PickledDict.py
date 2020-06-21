@@ -1,86 +1,98 @@
-import pickle, os, shutil
+import pickle
+from collections.abc import MutableMapping
 from os import PathLike
 
 
-class PickledDict(dict):
+class PickledDict(MutableMapping):
     """
     This Dictionary gets stored as a file and is able to handle complex objects, like a Numpyarray.
-    Use it the following way. read the data:
+    Use it the following way. Either load a dict from the filesystem
 
-    data = pickled_dict(path, 'r')
+    data = PickledDict('the/way/to/your/file')
 
-    To write data inside use the with statement:
+    or save an existing dict to the filesystem and bind it to the Variable, by setting kwargs
 
-    with pickled_dict(path, 'c') as d:
-        d[key] = data
+    regular_dict = {'key1': 'value1', 'key2': 'value2'}
+    data = PickledDict('the/way/to/your/file', **regular_dict)
+
+    To write data inside simply use:
+
+    data[key] = value
+
+    It saves the data on every write action onto the filesystem
+
+    Attention: if you have two instances reading and writing to the same file it is possible to experience Issues.
 
     :param filename: this is the name of the pickled_dict (and the path)
-    :param mode: this is c = create, r = read, n = new. It indicates whether the Dict is created if it doesn't exist,
-    it is only being read or if it is guaranteed to be new.
     """
 
-    def __init__(self, filename: PathLike, mode: str = 'c', *args, **kwargs):
-        self.filename = filename
-        self.mode = mode  # can be c, r, n
-        self.reload()
-        dict.__init__(self, *args, **kwargs)
+    def __init__(self, filename: PathLike = "dict.pkl", **kwargs):
+        # should not be changed after creation
+        self._filename = filename
+        # without kwargs it loads the data from filename
+        if kwargs:
+            self.data = dict(kwargs)
+            self._dump()
+        else:
+            self.data = self._load()
 
-    def __enter__(self):
-        return self
+    def __str__(self):
+        return self.data.__str__()
 
-    def __exit__(self, *exc_info):
-        self.close()
+    def __repr__(self):
+        return self.__class__.__name__ +  self.data.__repr__()
 
     def __len__(self):
-        return len(self.keys())
+        return len(self.data)
 
-    def sync(self):
-        """
-        handles writing the data to the disk
-       :return:
-        """
-        if self.mode == 'r':
-            return -1
-        tempname = self.filename + '.tmp'
-        with open(tempname, 'wb') as tempobj:
-            try:
-                self.dump(tempobj)
-            except Exception:
-                os.remove(tempname)
-                raise Exception("An Error occurred")
-        shutil.move(tempname, self.filename)
+    def __iter__(self):
+        yield self.data.keys()
 
-    def close(self):
+    def __getitem__(self, item):
+        self._load()
+        return self.data[item]
+
+    def __setitem__(self, key, value):
+        self.data[key] = value
+        self._dump()
+
+    def __delitem__(self, key):
+        del self.data[key]
+        self._dump()
+
+    def _load(self) -> dict:
         """
-        it gets called if the connection ends
+        gets called everytime something is loaded from the file
         :return:
         """
-        self.sync()
+        tmp = {}
+        try:
+            with open(self._filename, 'rb') as fileobj:
+                tmp = dict(pickle.load(fileobj))
+        finally:
+            print(tmp)
+            return tmp
 
-    def load(self, fileobj: PathLike):
+    def _dump(self) -> None:
         """
-
-        loads the data from the disk
-        :param fileobj:
+        is called to update the file object
         :return:
         """
         try:
-            return self.update(pickle.load(fileobj))
-        except ValueError:
-            raise ValueError('File format not supported')
+            with open(self._filename, 'wb') as fileobj:
+                pickle.dump(self.data, fileobj, protocol=pickle.HIGHEST_PROTOCOL)
+        except PermissionError:
+            print("Can't open the File")
 
-    def dump(self, fileobj: PathLike) -> None:
-        """
-        writes data to the disk. It only supports pickled data.
-        :return:
-        """
-        pickle.dump(dict(self), fileobj, protocol=pickle.HIGHEST_PROTOCOL)
 
-    def reload(self) -> None:
-        """
-        Update your variable, that saved the Data and needs to be updated to have the new Values saved
-        :return: 
-        """
-        if self.mode != 'n' and os.access(self.filename, os.R_OK):
-            with open(self.filename, 'rb') as fileobj:
-                self.load(fileobj)
+if __name__ == '__main__':
+    test_dict = {"help": 'me', "please": "i need this"}
+    pd = PickledDict(**test_dict)
+    pd["test"] = "world"
+    pd["test"] = "test2"
+    new_pd = PickledDict()
+    new_pd["try"] = "me"
+    # print(type(new_pd._load()))
+    pd._load()
+    print(pd.__repr__())
+    #print(new_pd.__repr__())
